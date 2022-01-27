@@ -8,6 +8,8 @@ const app = express();
 
 app.use(bodyParser.json());
 
+
+//cors config
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
@@ -16,13 +18,11 @@ app.use((req, res, next) => {
   next();
 });
 
-
-// Route
+// Routes
 app.get('/', (req, res) => {
   res.send('Welcome to crypto');
 });
 
-// all customers
 app.get('/crypto/get', (req, res) => {
   res.json(arr);
 });
@@ -31,7 +31,7 @@ app.post('/crypto/post', (req, res) => {
 
   const customerObj = {
     name: req.body.name,
-    current_price: req.body.current_price,
+    usd: req.body.usd,
     image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
   };
 
